@@ -1,0 +1,42 @@
+name: Windows installer
+
+on:
+  workflow_dispatch:
+    inputs:
+      portal_url:
+        description: "Deployed SchoolHub portal URL"
+        required: true
+        default: "https://schoolhub.example.com"
+
+jobs:
+  build-windows-installer:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Windows installer
+        env:
+          SCHOOLHUB_PORTAL_URL: ${{ inputs.portal_url }}
+        run: pnpm desktop:dist
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: schoolhub-windows-installer
+          path: release/SchoolHub-Setup-*.exe
+          if-no-files-found: error
