@@ -6,7 +6,7 @@ on:
       portal_url:
         description: "Deployed SchoolHub portal URL"
         required: true
-        default: "https://schoolhub.example.com"
+        default: "https://ansahbudu4-rgb.github.io/app/"
 
 jobs:
   build-windows-installer:
