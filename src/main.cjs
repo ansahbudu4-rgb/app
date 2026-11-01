@@ -34,7 +34,6 @@ function createWindow() {
     height: 860,
     minWidth: 800,
     minHeight: 600,
-    show: false,
     autoHideMenuBar: true,
     backgroundColor: "#f7f8f6",
     webPreferences: {
@@ -44,7 +43,6 @@ function createWindow() {
     }
   });
 
-  window.once("ready-to-show", () => window.show());
   window.webContents.setWindowOpenHandler(({ url }) => {
     if (!isPortalUrl(url)) {
       openExternalUrl(url);
