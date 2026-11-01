@@ -1,12 +1,19 @@
 {
-  "name": "app",
+  "name": "schoolhub-desktop",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Windows desktop app for SchoolHub",
+  "main": "src/main.cjs",
+  "packageManager": "pnpm@12.16.1",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron .",
+    "desktop:dist": "electron-builder --config electron-builder.config.cjs --win nsis --x64"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "electron": "^45.2.1",
+    "electron-builder": "^26.18.0"
+  }
 }
